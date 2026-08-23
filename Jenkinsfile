@@ -19,7 +19,7 @@ pipeline {
                 steps {
                     script{
                         echo "building the docker iamge...."
-                        withCredentials([usernamePassword(credentialsId: 'docker-hub_cred', passwordVariable:'PASS', usernameVariable: 'User')]){
+                        withCredentials([usernamePassword(credentialsId: 'docker-hub_cred', passwordVariable:'PASS', usernameVariable: 'USER')]) {
                             sh 'docker build -t kasice/demo-app:jma-2.0 .'
                             sh 'echo $PASS | docker login -u $USER --password-stdin'
                             sh 'docker push kasice/demo-app:jma-2.0'
